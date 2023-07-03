@@ -1,0 +1,12 @@
+// Q2: Read the code below, choose the correct answer and explain the reason.
+
+Answer: Output should be "Your grace"
+
+Description:
+    the purpose of the code is to calculate how many characters the message has, then output different statement according to count of the characters.
+        if the amount of characters of the message is 0, then print "Aye!";
+        if the amount is range in 1 and 39, then print "Your grace";
+        if the amount is range in 40 and 56, then print "My lord."
+        if the amount if out of above range, them print "You know nothing..."
+
+    And the length of message is 39 characters, thus compiler print "Your grace."

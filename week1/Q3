@@ -1,0 +1,9 @@
+// Q3: Read the code below, choose the correct answer and explain the reason.
+
+Answer: d. val array = Array(6) {1000.0.pow(it)}
+
+Description:
+    To create a Array, we can use Array constructor that take array size as parameter and the function returns an array given "it" as each index.
+    In this case, we need to return 1000.0 * each index as value.
+    As the result, the total function will be: val array = Array(6) {1000.0.pow(it)}
+

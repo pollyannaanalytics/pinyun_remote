@@ -1,0 +1,35 @@
+
+// Q1: Try the statements below in REPL, and answer whether they are correct or not.
+
+a. val id = 9527
+    correct: "val" is suitable when variable will not be changed, and when the variable is not assign type, kotlin will judge the type automatically according to the value.
+    the value and the type are not in conflict.
+
+b. var number: Int = 5.6
+    error: The Int type should be only assigned integer value(e.g. 1, 2, 3, 0 ...)
+    the value and the type are in conflict.
+
+c. var title = "Hello Kotlin!"
+    correct: when value is String type, should be add "" double quotation marks.
+    the value and the type are not in conflict.
+
+d.  val content : String = null
+    error: String type is a non-null type, null cannot be a value of String.
+    the value and the type are in conflict
+
+e. val number : Double? = 556.6
+    correct: Double type is to used in float(e.g. 1.2, 3.14....)
+    the value and the type are not in conflict
+
+f. var list: List<String> = listOf(null, null)
+    error: listOf() is a immutable function, which can not input null. If we need to create a list which includes null, we can use mutableListOf(null, null)
+
+g. var list: List<String?>? = listOf("Wayne", "Chen")
+    correct: elements in the list are String type, so the value and the type are not in conflict
+
+h. list.size
+    error: as the g. statement, list is a variable which allows null value. In this situation, we need to use "?" to tell compiler to deal with null value.
+
+i. list?.size
+    correct: When list is added "?", compiler can deal with null value. As the result, compiler can return a valid list's size.
+
