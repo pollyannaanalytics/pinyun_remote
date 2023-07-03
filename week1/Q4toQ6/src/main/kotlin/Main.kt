@@ -2,7 +2,7 @@
 //Q4. Create a new class, Human, includes:
 
 open class Human (val name: String = ""){
-    open var mana = false // Q6: confirm whether human has mena or not, no mana is default
+    open var mana = 0 // Q6: confirm whether human has mena or not, no mana (0) is default
 
     open fun attack(){
         println("$name use First Attack!")
@@ -16,7 +16,7 @@ open class Human (val name: String = ""){
 class Mage: Human{
     constructor(name: String = ""): super(name)
 
-    override  var mana = true
+    override  var mana = 1 //(這裡的設定是只要是 mage 就一定會是1 起跳，如果日後有其他的設定調高mana，就再往上加，但是預設是 1)
 
     override fun attack(){
        println("$name use Fireball!")

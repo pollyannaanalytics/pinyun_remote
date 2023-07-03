@@ -22,10 +22,12 @@ e. val number : Double? = 556.6
     the value and the type are not in conflict
 
 f. var list: List<String> = listOf(null, null)
-    error: listOf() is a immutable function, which can not input null. If we need to create a list which includes null, we can use mutableListOf(null, null)
+    error: null 型別並不包含在 String 型別裡面。如果是 List<null> 的話，裡面就都只能放 null 了；如果是放置 String 跟 null 的話，可以用 List<String?> 來宣告
+    本題應該改成: List<String> = listOf(null, null)
 
 g. var list: List<String?>? = listOf("Wayne", "Chen")
-    correct: elements in the list are String type, so the value and the type are not in conflict
+    correct: List<String?>? 是指說 list 這個物件可以放 list 或 null型態，並且在 list 裡面的element 可以是 string 或是 null。 因此在本題裡面放 "Wayne" , "Chen" 理所當然可以。
+    另外，如果題目改成  List<String?>? = listOf(null, null)的話是可以的嗎？答案應該是可以的，因為在這個 list 允許 裡面的元素是 null ，也可以允許整個list是 null。
 
 h. list.size
     error: as the g. statement, list is a variable which allows null value. In this situation, we need to use "?" to tell compiler to deal with null value.
