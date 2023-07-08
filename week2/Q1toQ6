@@ -74,6 +74,7 @@ array 一起變動，因此 Big Oh 會是O(n)，變動比較沒有彈性。
     value type 包含
     * Character: 單一的字母 (ex. A, B, C)
     * String: 字串，字母的集合(ex. ABC, Pinyun)
+    * Array : 陣列，可以放元素的集合(ex. ["hello", "world"])
     * Boolean: 布林值，True or False
     * Number: 數值，子分類 ->
         Integer ->
