@@ -1,0 +1,94 @@
+1. What is Inheritance? Try to explain in Mandarin.
+
+    創建類別的過程中，有些類別的內容會有相似甚至重複的狀況，為了讓整個程式碼盡可能輕量化，會使用繼承來讓下一個類別可以以前一個
+類別為基礎繼續建造。很像是蓋大樓的時候，如果房子裡面的屋內結構跟樓下相似，管線跟電線就不用花多餘的時間跟空間重拉。但是在蓋樓上的時候，也可以再
+微調裝潢。
+
+    被繼承的類別叫做 super class 或 base class，負責繼承別人的類別叫做 subclass，subclass 會自動繼承super class 的
+所有屬性跟函式。當subclass 想要改變函式或是屬性的內容時，可以使用 override 覆寫的方式來修改繼承過來的屬性跟函式。
+舉例而言:
+
+        open class Animal(){
+            open val fear: String = "Human"
+            open val eatMeat: Boolean = True
+        }
+
+        class Cat: Animal(){
+            override val fear = "Dog"
+        }
+
+    Animal 會是 Cat 的超類別，需要用 open 來宣告才能被繼承，Cat 則是子類別，預設是會繼承Animal 裡面的 fear 跟
+     eatMeat屬性，如果要修改屬性，必須使用 override 來修改之。
+
+
+2. How to split a string in Android? Explain your understanding, and even better to attach
+some sample code.
+
+典型的方法是把字串分開後放到陣列(Array)裡面，細節來說我們可以標示特定字元作為切斷點，達到不一樣的split效果。
+舉例來說:
+    val stringToSplit = "Hello World"
+
+    // 如果要變成 "Hello" 跟 "World"，就標示空格
+    val splitToTwo: Array = stringToSplit.split(" ").toTypedArray()
+
+    //如果要每一個字母都分開，就標示 "" 代表每一個字都要分開
+    val splitToEach: Array = stringToSplit.split("").toTypeArray()
+
+3. What kind of key-value pair collection do we use in Android? Attach a sample code that
+uses for-loop to print each key-value pair.
+在 kotlin 中處理key-value 的集合是 map。原理是存取 value 時也輸入一個索引值 key 當成對照工具，日後 map 在找資料的時候，會用 key 來尋找。
+跟 set 不一樣的是，map 裡面的 value 可以重複，不過 key 不允許重複輸入以避免 collision。
+使用 map 的好處是，因為在查找資料的過程中不需要經過其他計算，因此時間複雜度為 O(1)
+
+// sample code
+
+    // 建立一個 map
+        val mapToPrint = mapOf("Hello" to 1, " World" to 2, ", " to 3, " I" to 4, " am" to 5, " Pin-Yun" to 6)
+
+        //在for loop 處理上，collection 可以使用 forEach 讓程式碼簡化
+        mapToPrint.forEach{ word ->
+            println("When key is ${word.key}, the value will be ${word.value}")
+
+        }
+
+
+
+
+
+4. What’s the difference between ArrayList and LinkedList? Try to explain in Mandarin.
+
+     Array 的好處是lookup 很方便，而且因為程式碼只要執行一次，所以效率是 O(1) 。但是在如果要插入在特定位置或是在最前
+面加入element，因為在被插入的位置之後的每一個 element 的 index 都要往後一個，即便只是插入一個element，都需要整個
+array 一起變動，因此 Big Oh 會是O(n)，變動比較沒有彈性。
+
+    LinkedList的結構是由 node 結構，每一個 node 都連著 next 串接下一個 node (如果是 doubleList 就會有before)
+ 這樣的好處是插入特定的node時，只需要更改前一個node的next指向即可，為 O(1)。不過linked list 的劣勢是查閱時需要點開
+ 每一個node 的 next ，所以查閱沒有array 方便，linkedlist 的查閱為O(n)
+
+
+
+5. What are Value Type variables? List out the Value Type variables you know.
+    value type 是相對於 reference type 的分類。當變數被賦值為一個值(value) 而不是物件，那變數就會直接儲存值而不是
+ 存取物件的位置。
+
+    value type 包含
+    * Character: 單一的字母 (ex. A, B, C)
+    * String: 字串，字母的集合(ex. ABC, Pinyun)
+    * Boolean: 布林值，True or False
+    * Number: 數值，子分類 ->
+        Integer ->
+        a. Byte: 8bits, 裝 -/+ 2^7　之間的整數
+        b. Int: 32bits, 裝 -/+ 2^31 之間的整數
+        c. Short: 16bits, 裝 -/+ 2^15 之間的整數
+        d. Long: 64bits, 裝 -/+ 2^63 之間的整數
+
+        Floating ->
+        a. Floating: 32bits, 裝 -/+ 2^31 之間的小數
+        b. Double: 64bits, 裝 -/+ 2^63 之間的小數
+
+
+6. What’s the maximum value of Int? If you want to represent integers larger than the limit,
+what should you do instead of using int variables?
+
+    Int 一個單位是32bits，有效整數值必須藉在 - 2147483648 和 2147483647 之間(介在-(2^31) 和 (2^31)-1 之間)。
+    如果一個數字大於 Int 的範圍，那可以使用 64bits 的 Long type，其有效範圍則是介在-(2^63) 和 (2^63)-1 之間。
