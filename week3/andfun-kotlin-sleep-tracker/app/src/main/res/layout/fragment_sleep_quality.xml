@@ -135,7 +135,7 @@
             android:ems="10"
             android:hint="Please enter any information for this night"
             android:inputType="text"
-            android:text="@={sleepQualityViewModel.sleepInfo}"
+            android:text="@={sleepQualityViewModel.sleepInfo}" 
             android:textSize="15sp"
 
             app:layout_constraintBottom_toBottomOf="parent"

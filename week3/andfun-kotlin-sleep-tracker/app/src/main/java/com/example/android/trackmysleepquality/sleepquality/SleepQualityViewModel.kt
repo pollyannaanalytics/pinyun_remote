@@ -43,38 +43,16 @@ class SleepQualityViewModel(
         val database: SleepDatabaseDao) : ViewModel() {
 
 
-
-    /**
-     */
-
-    /**
-     *
-     *
-     */
-
-    /**
-     * Variable that tells the fragment whether it should navigate to [SleepTrackerFragment].
-     *
-     * This is `private` because we don't want to expose the ability to set [MutableLiveData] to
-     * the [Fragment]
-     */
     private val _navigateToSleepTracker = MutableLiveData<Boolean?>()
 
+    // 把 sleepInfo 設定成 MutableLiveData ，直接存取 Input，因此設定為 String Type
     var sleepInfo = MutableLiveData<String>()
 
-    /**
-     * When true immediately navigate back to the [SleepTrackerFragment]
-     */
+
     val navigateToSleepTracker: LiveData<Boolean?>
         get() = _navigateToSleepTracker
 
-    /**
-     *
-     */
 
-    /**
-     * Call this immediately after navigating to [SleepTrackerFragment]
-     */
     fun doneNavigating() {
         _navigateToSleepTracker.value = null
     }
@@ -88,10 +66,9 @@ class SleepQualityViewModel(
         viewModelScope.launch {
                 val tonight = database.get(sleepNightKey) ?: return@launch
                 tonight.sleepQuality = quality
-                tonight.sleepInfo = sleepInfo.value.toString()
+                tonight.sleepInfo = sleepInfo.value.toString() // 因為database 不允許空值，因此把String? 強制轉為 String
                 database.update(tonight)
 
-            // Setting this state variable to true will alert the observer and trigger navigation.
             _navigateToSleepTracker.value = true
         }
     }
