@@ -1,0 +1,80 @@
+1. What is Encapsulation? Try to list out the benefits of Encapsulation.
+
+封裝(Encapsulation) 跟 多型(polymorphism) 、繼承(inherience)和 (有一些書籍有包含 抽象(abstract))
+被稱為是物件導向(Object-oriented programming, OOP)幾大特性。
+
+封裝是指說在程式碼中設置權限，讓不同物件、類別之間有不同的存取限制。方法是透過 visibility modifier 
+把物件宣告成不同狀態，區別不同的使用權限:
+
+    public: 完全公開，所有人都可以使用繼承，也是預設的型態
+    private: 只有在同一個類別底下才可以使用
+    internal: 在同一個module以內的各個類別都可以使用
+    protected: 在類別以及透過其繼承的子類別可以使用
+
+封裝的好處有
+    1. 資料保密:
+    可以防止某些資料被竄改，也可以防止資料被窺視，保障資料的隱密性。舉例來說，大學放榜系統可以查詢所有人准考證號跟分數，
+    但是生日以及姓名就會被限制住，這種時候就可以用封裝來限制資料公開的程度。
+
+    2. 彈性:
+    如果每一個類別把自己的資料獨立起來，而不是暴露給所有人，當內部的邏輯需要修改時，外部就不用因為有呼叫
+    到裡面資料而一併被修改。這樣就可以維持商業邏輯的規範，在確保資料結構的前提下，可以滾動式的做修正更新。
+
+    3. Getter and Setter
+    透過 Getter and Setter 的方式，讓資料保密的前提下，外界仍可以回傳資料以及設定資料。
+
+2. Try to explain what enum is and why we use them.
+
+Enum class 的功能是把所有值列出來，並且限制使用者只能使用有被列舉的值。此舉的意義是確保型別跟值
+是受到控制的。
+例如約牙醫診所的時候，可能牙醫排出的時間就固定幾個時段，這個時候可以限制使用者輸入有開放的時段就好，
+可以避免另外花時間處理因為輸入不允許的時間而產生的錯誤。
+
+
+3. How to use enum in Kotlin? Attach a sample code that uses enum in Kotlin.
+
+enum 基本上就是一個 class ，在創建 enum class 的時候就是在一般的class前面宣告為enum 即可。
+而使用者可以直接以調用屬性的方式來取值。
+
+承接上段約牙醫的case，如果我們簡化成給使用者約一周七天的其中一天，我們就不會希望使用者輸入一個星期
+八這種奇怪的答案。所以我們可能會這樣寫:
+
+enum class dentistBooking {
+    SUNDAY,
+    MONDAY,
+    TUESDAY,
+    WEDNESDAY,
+    THURSDAY,
+    FRIDAY,
+    SATURDAY
+}
+
+使用者執行時就需要在這些列舉的值中選一個:
+fun main()
+{
+    println("user chooses ${dentistBooking.FRIDAY}")
+
+    }
+
+
+4. What are the differences between LinearLayout and RelativeLayout? Try to explain in
+detail.
+
+LinearLayout 像是積木把每塊元件都獨立開來，堆疊在一起。LinearLayout可以水平以及垂
+直的擺放，如果而每一個元件會依序排列在一起。而每個元件排列時的大小需要使用 layout_weight 
+來客製化每一個view 的大小，並且每一個view的 layout_weighted都是各自獨立的，不會影響到其他view的
+RelativeLayout 則是用其他的元件的位置來排列。
+
+RelativeLayout可以使用 
+layout_toRightOf, layout_toLeftOf, layout_below, layout_alignParentTop,
+ layout_top, layout_alignParentLeft, layout_alignParentRight
+透過其他元件的位置來排列，需要注意的是，在使用RelativeLayout時每個元件至少要給予 3 個方向的相對位置
+，否則會報錯。
+
+5. Try to explain the benefits of ConstraintLayout. Why should you use it?
+在LinearLayout 跟 Relative Layout都是嵌套布局，多層的元件彼此疊在一起形成一個使用者能夠看到的畫面。
+但是也會因為彼此nested在一起，讓ui 呈現上耗費不少效能。而constraint是用約束的方式做線性的定位，脫離原本
+nested的狀態，讓效能提高。
+ContraintLayout也是透過父元素跟其他元件的相對關係來控制元件的位置。但是ContraintLayout因為是採取線性約
+束的方式，讓開發者可以在Design tab上直接手拉，並且每一個元件只要設立一個垂直方向以及一個水平方向就可以成立。
+而ConstraintLayout也提供使用者可以使用百分比、或是鍊子來讓元件可以根據不一樣的螢幕尺吋來產生響應式設計。
