@@ -1,0 +1,28 @@
+1. What is Polymorphism? Try to explain in Mandarin.
+    多型(Polymorphism)、繼承以及封裝是物件導向(OOP)三個重點概念之一。
+    在物件繼承類別時，一個類別下面可以有各式各樣的物件，物件裡面的屬性
+    被繼承的類別不一定要有，並且物件可以透過 override 微調被繼承的類別
+    裡面的函式。
+    簡單來說，多型是指說物件繼承類別時，每一個物件可以做各自的調整，而不
+    必讓類別或其他繼承的物件知道或是一起做修改。
+
+2. Try to explain when they are called during the lifecycle of Activity.
+    當一個裝置從無到有點開App: 會依序經歷onCreate() -> onStart() -> onResume() -> onPause() -> onStop() -> onDestroyed() 
+    當一個裝置正在進行，旋轉裝置時，這個時候的lifecycle會先被onDestroyed ，然後重新onCreated() 一次:
+        onPause() -> onStop() -> onDestroyed() -- 重新create --> onCreate() -> onCreate() -> onStart() -> onResume()
+
+    當app過程中，使用者按back button 退出APP: 會從目前的fragment依照hostNav管理的方式回到主頁，然後整個退出App: 
+        onPause() -> onStop() -> onDestroyed()
+    當app過程中，使用者按home button 或是來電等突發事件，app 會暫停app運作，隱藏目前的頁面: onPause() -> onStop()
+
+3. What is the Android Jetpack?
+    Android Jetpack 是一種第三方套件，裡面包含Room, Livedata 等現成方法，可以讓開發者開發起來更簡便，不用從頭開始自己製造。
+    適當使用套件可以降低程式碼運作的內容以提升效能，
+4. What is Coroutines? Why do we use it? Try to explain in Mandarin.
+    一般來說，程式是一步一步往下執行的，一次只能做一件事，稱之為同步。但是當我們在網路上行動時，如果都一步一步往下走，那資料會跑得
+    非常慢，甚至有可能遇到連線逾時而被拒絕。此時讓程式碼可以在等待的同時，先從事其他事情，等到資料送來時才繼續，就是 corroutine 
+    要做的事情。
+    但　coroutine 要做的事情不侷限在非同步方法，這裡需要提到緒(thread)的概念，就像是一個任務的進程。而在網路上的使用操作，經常
+    是多重的執行緒。舉例來說，網路銀行需要使用者輸入帳密，然後到歡迎系統時顯示: "XXX，您好!"，此時系統地執行緒包括拿使用者帳密抓
+    token，進到網路銀行首頁，以及得到使用者姓名。此時會有許多執行緒疊在一起，而coroutine 可以透過 job() 跟 dispatcher() 進一步
+    管理緒(thread)
